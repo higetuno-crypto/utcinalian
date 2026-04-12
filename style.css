@@ -1,0 +1,811 @@
+/* ===================================================
+   うちなリアン 琉 — Style Sheet
+   =================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ocean: #1a3a5c;
+  --ocean-deep: #0f2540;
+  --sand: #f5e6c8;
+  --sand-light: #faf3e6;
+  --coral: #e8594f;
+  --coral-light: #ff7b73;
+  --hibiscus: #d4366e;
+  --turquoise: #2ab5a0;
+  --gold: #d4a843;
+  --text-dark: #2c1810;
+  --text-light: #faf3e6;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  color: var(--text-dark);
+  background: var(--sand-light);
+  overflow-x: hidden;
+  line-height: 1.8;
+}
+
+/* ===== HERO ===== */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--ocean-deep);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background: url('images/exterior.jpeg') center / cover no-repeat;
+  filter: brightness(0.45) saturate(1.2);
+  transform: scale(1.05);
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  0%   { transform: scale(1.05); }
+  100% { transform: scale(1.12); }
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 37, 64, 0.3) 0%,
+    rgba(15, 37, 64, 0.6) 60%,
+    rgba(15, 37, 64, 0.95) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--text-light);
+  padding: 2rem;
+  animation: fadeUp 1.2s ease-out;
+}
+
+@keyframes fadeUp {
+  0%   { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hero__logo {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.2em;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+.hero__logo span {
+  display: block;
+  font-size: 0.35em;
+  letter-spacing: 0.3em;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: 0.8em;
+}
+
+.hero__sub {
+  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+  letter-spacing: 0.2em;
+  opacity: 0.85;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+
+.hero__cta {
+  display: inline-block;
+  padding: 0.9em 2.5em;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  transition: all 0.4s;
+  border-radius: 2px;
+}
+
+.hero__cta:hover {
+  background: var(--gold);
+  color: var(--ocean-deep);
+}
+
+/* ===== NAV ===== */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s;
+}
+
+.nav.scrolled {
+  background: rgba(15, 37, 64, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0.6rem 2rem;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav__brand {
+  font-family: 'Shippori Mincho', serif;
+  color: var(--text-light);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+}
+
+.nav__links {
+  display: flex;
+  gap: 1.8rem;
+  list-style: none;
+}
+
+.nav__links a {
+  color: var(--sand);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.nav__links a:hover {
+  opacity: 1;
+  color: var(--gold);
+}
+
+.nav__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.nav__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--sand);
+  transition: 0.3s;
+}
+
+/* Mobile nav overlay */
+.nav__links.open {
+  display: flex !important;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 37, 64, 0.97);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  z-index: 100;
+}
+
+.nav__links.open a {
+  font-size: 1.1rem;
+  opacity: 1;
+}
+
+/* ===== SECTIONS (共通) ===== */
+
+section {
+  padding: 5rem 1.5rem;
+}
+
+.section-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.4em;
+  letter-spacing: 0.08em;
+}
+
+.section-title-en {
+  display: block;
+  font-size: 0.45em;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  font-weight: 400;
+  margin-bottom: 0.6em;
+}
+
+.section-lead {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  font-size: 0.95rem;
+  line-height: 2;
+  opacity: 0.8;
+}
+
+/* ===== CONCEPT ===== */
+
+.concept {
+  background: var(--ocean-deep);
+  color: var(--text-light);
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.concept-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.4s, background 0.4s;
+}
+
+.concept-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.concept-card__img {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.concept-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s;
+}
+
+.concept-card:hover .concept-card__img img {
+  transform: scale(1.08);
+}
+
+.concept-card__body {
+  padding: 1.5rem;
+}
+
+.concept-card h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.05rem;
+  margin-bottom: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.concept-card p {
+  font-size: 0.83rem;
+  line-height: 1.9;
+  opacity: 0.8;
+}
+
+/* ===== INGREDIENTS ===== */
+
+.ingredients {
+  background: var(--ocean);
+  color: var(--text-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.ingredients::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 30%, rgba(42, 181, 160, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.ingr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.ingr-card {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 3 / 4;
+  cursor: default;
+}
+
+.ingr-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.ingr-card:hover img {
+  transform: scale(1.08);
+}
+
+.ingr-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(15, 37, 64, 0.85) 0%, rgba(15, 37, 64, 0.15) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  transition: background 0.4s;
+}
+
+.ingr-card:hover .ingr-card__overlay {
+  background: linear-gradient(0deg, rgba(15, 37, 64, 0.9) 0%, rgba(15, 37, 64, 0.3) 60%, rgba(15, 37, 64, 0.1) 100%);
+}
+
+.ingr-card__overlay h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 0.4em;
+  letter-spacing: 0.05em;
+}
+
+.ingr-card__overlay p {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* ===== MENU ===== */
+
+.menu {
+  background: var(--sand-light);
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.menu-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(44, 24, 16, 0.06);
+  transition: box-shadow 0.4s;
+}
+
+.menu-item:hover {
+  box-shadow: 0 8px 40px rgba(44, 24, 16, 0.12);
+}
+
+.menu-item:nth-child(even) {
+  direction: rtl;
+}
+
+.menu-item:nth-child(even) > * {
+  direction: ltr;
+}
+
+.menu-item__text h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.3em;
+  color: var(--ocean-deep);
+}
+
+.menu-item__price {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--coral);
+  font-weight: 700;
+  margin-bottom: 1em;
+  letter-spacing: 0.05em;
+}
+
+.menu-item__text p {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  opacity: 0.75;
+}
+
+.menu-item__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.menu-item__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s;
+}
+
+.menu-item:hover .menu-item__img img {
+  transform: scale(1.05);
+}
+
+/* ===== SENBERO ===== */
+
+.senbero {
+  background: linear-gradient(135deg, var(--coral) 0%, var(--hibiscus) 100%);
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.senbero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+}
+
+.senbero .section-title {
+  color: #fff;
+}
+
+.senbero .section-title-en {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.senbero__box {
+  position: relative;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  margin-top: 1rem;
+}
+
+.senbero__price {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 0.3em;
+}
+
+.senbero__price small {
+  font-size: 0.4em;
+  font-weight: 400;
+}
+
+.senbero__detail {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.8;
+}
+
+.senbero__note {
+  font-size: 0.82rem;
+  opacity: 0.75;
+  margin-top: 0.6em;
+}
+
+/* ===== ATMOSPHERE ===== */
+
+.atmosphere {
+  background: var(--ocean-deep);
+  color: var(--text-light);
+}
+
+.atmo-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.atmo-gallery__item {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.atmo-gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s;
+}
+
+.atmo-gallery__item:hover img {
+  transform: scale(1.05);
+}
+
+.atmo-gallery__item.tall {
+  grid-row: span 2;
+}
+
+.atmo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.atmo-gallery__item:hover .atmo-caption {
+  opacity: 1;
+}
+
+/* ===== VOICE ===== */
+
+.voice {
+  background: var(--sand-light);
+}
+
+.voice-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.voice-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 15px rgba(44, 24, 16, 0.05);
+  position: relative;
+}
+
+.voice-card::before {
+  content: '\201C';
+  font-family: 'Shippori Mincho', serif;
+  font-size: 4rem;
+  color: var(--coral);
+  opacity: 0.2;
+  position: absolute;
+  top: 0.2rem;
+  left: 1rem;
+  line-height: 1;
+}
+
+.voice-card p {
+  font-size: 0.9rem;
+  line-height: 1.9;
+  padding-top: 1rem;
+}
+
+.voice-card cite {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  font-style: normal;
+  color: var(--turquoise);
+  letter-spacing: 0.05em;
+}
+
+/* ===== INFO ===== */
+
+.info {
+  background: #fff;
+}
+
+.info-table {
+  max-width: 640px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.info-table th,
+.info-table td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(44, 24, 16, 0.08);
+  font-size: 0.9rem;
+}
+
+.info-table th {
+  width: 35%;
+  font-weight: 700;
+  color: var(--ocean);
+  font-family: 'Shippori Mincho', serif;
+  letter-spacing: 0.05em;
+}
+
+.info-table td {
+  opacity: 0.8;
+}
+
+.tel-link {
+  color: var(--coral);
+  text-decoration: none;
+}
+
+/* ===== ACCESS ===== */
+
+.access {
+  background: var(--sand-light);
+}
+
+.access-map {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.access-map iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+  background: var(--ocean-deep);
+  color: var(--text-light);
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+footer .f-brand {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+
+footer .f-sub {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.f-sns {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.f-sns a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  transition: opacity 0.3s;
+}
+
+.f-sns a:hover {
+  opacity: 0.7;
+}
+
+footer small {
+  font-size: 0.7rem;
+  opacity: 0.35;
+}
+
+/* ===== SCROLL REVEAL ===== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .nav__links {
+    display: none;
+  }
+
+  .nav__hamburger {
+    display: flex;
+  }
+
+  .concept-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .concept-card__img {
+    height: 200px;
+  }
+
+  .ingr-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ingr-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .menu-item {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-item:nth-child(even) {
+    direction: ltr;
+  }
+
+  .menu-item__img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .atmo-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .atmo-gallery__item.tall {
+    grid-row: auto;
+  }
+
+  .voice-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .senbero__box {
+    padding: 2rem 1.5rem;
+  }
+
+  section {
+    padding: 3.5rem 1.2rem;
+  }
+}
