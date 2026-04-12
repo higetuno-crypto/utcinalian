@@ -23,12 +23,6 @@ uchinalian-ryu/
     └── umibudo.jpeg     # 海ぶどう
 ```
 
-## GitHub Pages での公開方法
-
-1. このリポジトリを GitHub にプッシュ
-2. **Settings** → **Pages** を開く
-3. **Source** で `main` ブランチ / `/ (root)` を選択して **Save**
-4. 数分後に `https://<ユーザー名>.github.io/<リポジトリ名>/` で公開されます
 
 ## 技術スタック
 
