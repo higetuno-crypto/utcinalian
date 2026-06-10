@@ -676,12 +676,24 @@ section {
 }
 
 .access-map {
-  width: 100%;
-  max-width: 960px;
+  /* ▼▼ 地図の大きさ調整ノブ（PC表示）▼▼
+     この数値を変えると地図の横幅が変わります。
+     例: 600px → 小さめ / 800px → 大きめ / 100% → 横いっぱい */
+  --map-width: 700px;
+
+  width: var(--map-width);
+  max-width: 100%;        /* 画面幅は絶対に超えない（見切れ防止） */
   margin: 0 auto;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 地図画像をコンテナ幅にぴったり収める（はみ出し防止） */
+.access-map img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .access-map iframe {
@@ -803,6 +815,13 @@ footer small {
 
   .senbero__box {
     padding: 2rem 1.5rem;
+  }
+
+  /* ▼▼ 地図の大きさ調整ノブ（スマホ表示）▼▼
+     スマホで見たときの地図の横幅。
+     100% = 画面いっぱい / 90% = 少し余白を残す など */
+  .access-map {
+    --map-width: 100%;
   }
 
   section {
